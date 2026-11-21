@@ -404,7 +404,6 @@ function selectCharacter(id) {
   state.currentId = id
   writeLocalSelection(id)
   applyCurrent()
-  void saveState()
 }
 
 /* ------------------------------------------------------------------ */
