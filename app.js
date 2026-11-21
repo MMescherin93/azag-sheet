@@ -14,6 +14,7 @@ import { FIELDS } from './fields.generated.js'
 
 const META_KEY = 'com.azag.sheet/state'
 const LOCAL_KEY = 'azag-sheet-v1'
+const CURRENT_KEY = 'azag-sheet-current-v1'
 const SDK_URL = 'https://cdn.jsdelivr.net/npm/@owlbear-rodeo/sdk@3.1.0/+esm'
 const TIMEOUT_MS = 4000
 const DESIGN_W = 1123.2
@@ -160,6 +161,33 @@ function writeLocal() {
     localStorage.setItem(LOCAL_KEY, JSON.stringify(state))
   } catch {
     /* переполнение или приватный режим */
+  }
+}
+
+/* Выбранный персонаж — личный для каждого клиента, в общую метадату не идёт. */
+function readLocalSelection() {
+  try {
+    return localStorage.getItem(CURRENT_KEY)
+  } catch {
+    return null
+  }
+}
+
+function writeLocalSelection(id) {
+  try {
+    if (id) localStorage.setItem(CURRENT_KEY, id)
+  } catch {
+    /* нет хранилища — переживём */
+  }
+}
+
+function restoreLocalSelection() {
+  const saved = readLocalSelection()
+  if (saved && state.chars.some((char) => char.id === saved)) {
+    state.currentId = saved
+  } else {
+    state.currentId = state.chars[0].id
+    writeLocalSelection(state.currentId)
   }
 }
 
@@ -350,6 +378,7 @@ function addCharacter() {
   const char = newCharacter()
   state.chars.push(char)
   state.currentId = char.id
+  writeLocalSelection(char.id)
   applyCurrent()
   void saveState()
   toast('Создан новый персонаж')
@@ -363,6 +392,7 @@ function deleteCharacter() {
   state.chars = state.chars.filter((item) => item.id !== char.id)
   if (state.chars.length === 0) state.chars.push(newCharacter())
   state.currentId = state.chars[0].id
+  writeLocalSelection(state.currentId)
   applyCurrent()
   void saveState()
   toast('Персонаж удалён')
@@ -372,6 +402,7 @@ function selectCharacter(id) {
   if (!state.chars.some((char) => char.id === id)) return
   commitCurrent()
   state.currentId = id
+  writeLocalSelection(id)
   applyCurrent()
   void saveState()
 }
@@ -414,9 +445,15 @@ function handleRemote(meta) {
 
   const active = document.activeElement
   const editing = active && $('fields').contains(active)
+  const selected = state.currentId
 
   state = next
   ensureState()
+  if (selected && state.chars.some((char) => char.id === selected)) {
+    state.currentId = selected
+  } else {
+    restoreLocalSelection()
+  }
   renderSelect()
 
   // Не сбрасываем курсор в поле, которое пользователь прямо сейчас правит.
@@ -562,6 +599,7 @@ async function init() {
   else state = { currentId: null, chars: [] }
 
   ensureState()
+  restoreLocalSelection()
   lastSavedJson = JSON.stringify(state)
 
   // Если в комнате ещё ничего нет, а локальные листы есть — публикуем их.
