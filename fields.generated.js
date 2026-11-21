@@ -57,11 +57,146 @@ export const FIELDS = [
   {
     "name": "MAGIC TMS 1",
     "kind": "text",
-    "multiline": true,
+    "multiline": false,
     "x": 216.63,
-    "y": 164.26,
+    "y": 167.43,
     "w": 248.67,
-    "h": 362.29
+    "h": 22.0
+  },
+  {
+    "name": "MAGIC TMS 2",
+    "kind": "text",
+    "multiline": false,
+    "x": 216.63,
+    "y": 191.43,
+    "w": 248.67,
+    "h": 22.0
+  },
+  {
+    "name": "MAGIC TMS 3",
+    "kind": "text",
+    "multiline": false,
+    "x": 216.63,
+    "y": 214.54,
+    "w": 248.67,
+    "h": 22.0
+  },
+  {
+    "name": "MAGIC TMS 4",
+    "kind": "text",
+    "multiline": false,
+    "x": 216.63,
+    "y": 235.86,
+    "w": 248.67,
+    "h": 22.0
+  },
+  {
+    "name": "MAGIC TMS 5",
+    "kind": "text",
+    "multiline": false,
+    "x": 216.63,
+    "y": 258.97,
+    "w": 248.67,
+    "h": 22.0
+  },
+  {
+    "name": "MAGIC TMS 6",
+    "kind": "text",
+    "multiline": false,
+    "x": 216.63,
+    "y": 282.96,
+    "w": 248.67,
+    "h": 22.0
+  },
+  {
+    "name": "MAGIC TMS 7",
+    "kind": "text",
+    "multiline": false,
+    "x": 216.63,
+    "y": 305.18,
+    "w": 248.67,
+    "h": 22.0
+  },
+  {
+    "name": "MAGIC TMS 8",
+    "kind": "text",
+    "multiline": false,
+    "x": 216.63,
+    "y": 328.29,
+    "w": 248.67,
+    "h": 22.0
+  },
+  {
+    "name": "MAGIC TMS 9",
+    "kind": "text",
+    "multiline": false,
+    "x": 216.63,
+    "y": 350.95,
+    "w": 248.67,
+    "h": 22.0
+  },
+  {
+    "name": "MAGIC TMS 10",
+    "kind": "text",
+    "multiline": false,
+    "x": 216.63,
+    "y": 374.94,
+    "w": 248.67,
+    "h": 22.0
+  },
+  {
+    "name": "MAGIC TMS 11",
+    "kind": "text",
+    "multiline": false,
+    "x": 216.63,
+    "y": 398.05,
+    "w": 248.67,
+    "h": 22.0
+  },
+  {
+    "name": "MAGIC TMS 12",
+    "kind": "text",
+    "multiline": false,
+    "x": 216.63,
+    "y": 419.38,
+    "w": 248.67,
+    "h": 22.0
+  },
+  {
+    "name": "MAGIC TMS 13",
+    "kind": "text",
+    "multiline": false,
+    "x": 216.63,
+    "y": 443.82,
+    "w": 248.67,
+    "h": 22.0
+  },
+  {
+    "name": "MAGIC TMS 14",
+    "kind": "text",
+    "multiline": false,
+    "x": 216.63,
+    "y": 466.48,
+    "w": 248.67,
+    "h": 22.0
+  },
+  {
+    "name": "MAGIC TMS 15",
+    "kind": "text",
+    "multiline": false,
+    "x": 216.63,
+    "y": 489.14,
+    "w": 248.67,
+    "h": 22.0
+  },
+  {
+    "name": "MAGIC TMS 16",
+    "kind": "text",
+    "multiline": false,
+    "x": 216.63,
+    "y": 512.24,
+    "w": 248.67,
+    "h": 22.0
   },
   {
     "name": "mundane",

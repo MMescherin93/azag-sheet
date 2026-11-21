@@ -79,6 +79,8 @@ let state = { currentId: null, chars: [] }
 
 function normalizeFields(saved) {
   const fields = {}
+  const legacyMagic =
+    saved && typeof saved['MAGIC TMS 1'] === 'string' ? saved['MAGIC TMS 1'] : ''
   for (const field of FIELDS) {
     const value = saved && typeof saved === 'object' ? saved[field.name] : undefined
     if (field.kind === 'checkbox') {
@@ -88,6 +90,18 @@ function normalizeFields(saved) {
         typeof value === 'string' ? value.slice(0, field.multiline ? MAX_TEXT : MAX_LINE) : ''
     }
   }
+
+  // Старые сохранения держали весь блок «Магические предметы» одним
+  // многострочным полем. Разбиваем его по строкам при первом открытии.
+  if (legacyMagic.includes('\n')) {
+    legacyMagic
+      .split(/\r?\n/)
+      .slice(0, 16)
+      .forEach((line, index) => {
+        fields[`MAGIC TMS ${index + 1}`] = line.slice(0, MAX_LINE)
+      })
+  }
+
   return fields
 }
 
